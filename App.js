@@ -36,7 +36,6 @@ const reducer = (state, action) => {
         card_id: action.card_id,
       };
     case "SET_CARD":
-      debugger;
       return {
         ...state,
         card: { ...action.payload },

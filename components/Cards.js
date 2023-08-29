@@ -44,7 +44,9 @@ const Cards = ({ navigation }) => {
 
   const renderItem = ({ item }) => {
     return (
-      <TouchableWithoutFeedback onPress={() => handleClick(item.card_id)}>
+      <TouchableWithoutFeedback
+        onPress={() => item.can_choose && handleClick(item.card_id)}
+      >
         <View style={styles.card}>
           <View style={styles.card_plastick}>
             <Text style={styles.card_mir}>{item.bank}</Text>
@@ -58,6 +60,9 @@ const Cards = ({ navigation }) => {
                 <Text>{elem.value}%</Text>
               </View>
             ))}
+            {item.can_choose || (
+              <Text style={styles.card_cash_not}>Нельзя менять кешбеки</Text>
+            )}
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -67,14 +72,14 @@ const Cards = ({ navigation }) => {
   return (
     <SafeAreaView>
       <View style={styles.conatiner}>
-        <View style={styles.nav}>
+        {/* <View style={styles.nav}>
           <TouchableWithoutFeedback>
             <Text>User</Text>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback>
             <Text>Mess</Text>
           </TouchableWithoutFeedback>
-        </View>
+        </View> */}
         {isLoad ? (
           <Text>Loading...</Text>
         ) : (
@@ -152,6 +157,11 @@ const styles = StyleSheet.create({
   card_cash_title: {
     fontWeight: 500,
     marginBottom: 3,
+  },
+
+  card_cash_not: {
+    color: "red",
+    fontWeight: 500,
   },
 });
 
